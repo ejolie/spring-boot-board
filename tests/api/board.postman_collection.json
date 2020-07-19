@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "7c41d6b8-a63b-429b-8517-a92c14652c6a",
+		"name": "board",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "/ : 계정 목록 조회",
+					"item": [
+						{
+							"name": "성공",
+							"item": [
+								{
+									"name": "계정 목록이 존재할 때",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ec60fe8b-3962-43a5-b7b9-7220ed2f8a98",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'data' field exists\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.data).to.exist;",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "실패",
+							"item": [],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/{id} : 계정 조회",
+					"item": [
+						{
+							"name": "성공",
+							"item": [
+								{
+									"name": "계정이 존재할 때",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "59c60e1e-3fd6-40a6-a8ea-aefbdb5cdba6",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'data' field exists\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.data).to.exist;",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts/1",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "실패",
+							"item": [
+								{
+									"name": "계정이 존재하지 않을 때",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "da259647-5fab-4fa4-98ba-65be4f01e231",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 404\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(404);",
+													"});",
+													"",
+													"pm.test(\"Verify 'data' field does not exist\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.data).to.not.exist;",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts/0",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts",
+												"0"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/ : 계정 생성",
+					"item": [
+						{
+							"name": "성공",
+							"item": [
+								{
+									"name": "계정 생성",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "84e9ed2c-3cc7-4dad-87b2-338bd6e7ac68",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'id' field exists\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    var id = jsonData.data.id;",
+													"    pm.expect(id).to.exist;",
+													"    pm.environment.set(\"account_id\", id);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"userId\": \"hello123\",\n    \"userName\": \"John Doe\",\n    \"password\": \"johndoe123\",\n    \"email\": \"hello123@gmail.com\",\n    \"phone\": \"01012345667\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "실패",
+							"item": [
+								{
+									"name": "필수 파라미터 누락",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a328aae8-d205-4c7b-9196-f18439094b82",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 400\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"userId\": \"hello123\",\n    \"userName\": \"John Doe\",\n    \"email\": \"hello123@gmail.com\",\n    \"phone\": \"01012345667\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/{id} : 계정 삭제",
+					"item": [
+						{
+							"name": "성공",
+							"item": [
+								{
+									"name": "계정 삭제",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "25793995-dce5-45b3-80c3-1e274e30577c",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts/{{account_id}}",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts",
+												"{{account_id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "실패",
+							"item": [
+								{
+									"name": "계정이 존재하지 않을 때",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "68092d32-3939-44a1-b088-ed5fec8177ff",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 404\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts/0",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts",
+												"0"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/{id} : 계정 수정",
+					"item": [
+						{
+							"name": "성공",
+							"item": [
+								{
+									"name": "계정 수정",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c2c4df70-3fcc-4bde-8ed1-7d0407ec62ec",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"userName\": \"John Doe\",\n    \"password\": \"qwerty123!!\",\n    \"email\": \"hello123@gmail.com\",\n    \"phone\": \"01012345667\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts/{{account_id}}",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts",
+												"{{account_id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "실패",
+							"item": [
+								{
+									"name": "계정이 존재하지 않을 때",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f2879b64-390e-424f-934b-057c5b051749",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 404\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"userName\": \"John Doe\",\n    \"password\": \"qwerty123!!\",\n    \"email\": \"hello123@gmail.com\",\n    \"phone\": \"01012345667\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts/0",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts",
+												"0"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "필수 파라미터 누락",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c476ec34-a205-43fa-96c4-32de535b0b7d",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Verify 'status' field is 400\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.status).to.eql(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"userName\": \"John Doe\",\n    \"email\": \"hello123@gmail.com\",\n    \"phone\": \"01012345667\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localhost}}/api/{{version}}/accounts/{{account_id}}",
+											"host": [
+												"{{localhost}}"
+											],
+											"path": [
+												"api",
+												"{{version}}",
+												"accounts",
+												"{{account_id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "article",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
